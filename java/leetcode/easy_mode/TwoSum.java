@@ -26,7 +26,7 @@ public class TwoSum {
         int[] output = new int[2];
 
         for(int i = 0; i < listofNums.length; i++){
-            for(int j = 1; j < listofNums.length; j++){
+            for(int j = i+1; j < listofNums.length; j++){
                 if(listofNums[i] + listofNums[j] == target){
                     output[0] = i;
                     output[1] = j;
