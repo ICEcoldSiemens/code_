@@ -23,7 +23,7 @@ strs[i] consists of only lowercase English letters if it is non-empty.*/
 
 public class LongestCommonPrefix {
 
-    public static String longestCommonPrefixHelped(String[] strings) {
+    public static String AttemptOnelongestCommonPrefix(String[] strings) {
         if(strings == null || strings.length == 0) return "";
         if(strings.length == 1) return strings[0];
 
@@ -51,7 +51,7 @@ public class LongestCommonPrefix {
 
             /* 1 millisecond with a time complexity of O(L∗N),
              where L is the length of the shortest string and N is the number of strings*/
-            System.out.println(longestCommonPrefixHelped(string));
+            System.out.println(AttemptOnelongestCommonPrefix(string));
 
 
 

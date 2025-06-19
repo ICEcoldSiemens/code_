@@ -35,22 +35,24 @@ Input: s = "MCMXCIV"
 Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.*/
 
+import java.util.HashMap;
+
 public class RomanToInteger {
 
     public static int value(char ch) {
-        switch (ch) {
-            case 'I': return 1;
-            case 'V': return 5;
-            case 'X': return 10;
-            case 'L': return 50;
-            case 'C': return 100;
-            case 'D': return 500;
-            case 'M': return 1000;
-            default: return 0;
-        }
+        return switch (ch) {
+            case 'I' -> 1;
+            case 'V' -> 5;
+            case 'X' -> 10;
+            case 'L' -> 50;
+            case 'C' -> 100;
+            case 'D' -> 500;
+            case 'M' -> 1000;
+            default -> 0;
+        };
     }
 
-    public static void RomantoIntHelped(String roman) {
+    public static void RomantoIntAttemptOne(String roman) {
         int ans = 0;
 
         // The current and next char indexes are held as loop executes
@@ -71,12 +73,29 @@ public class RomanToInteger {
                 ans += curr; // Adds return value to total answer
             }
         }
-
         System.out.println(ans);
+    }
+
+    public static void RomantoIntAttemptTwo(String roman) {
+        int result = 0;
+        int i, j;
+        char[] romanArray = roman.toCharArray();
+        HashMap<Character, Integer> map = new HashMap<>();
+        map.put('I', 1); map.put('V', 5); map.put('X', 10); map.put('L', 50); map.put('C', 100);
+        map.put('D', 500); map.put('M', 1000);
+
+        for(i = 0, j = 1; i < romanArray.length; i++, j++) {
+            if(map.get(romanArray[i]) >= map.get(romanArray[j])) {
+                result += map.get(romanArray[i]);
+            } else {result -= map.get(romanArray[i]);}
+        }
+        result += map.get(romanArray[romanArray.length - 1]);
+        System.out.println(result);
     }
 
 
     public static void main(String[] args) {
-        RomantoIntHelped("MCMXCIV"); // 2 milliseconds with a time complexity of O(n)
+        RomantoIntAttemptOne("MCMXCIV"); // 2 milliseconds with a time complexity of O(n)
+        //RomantoIntAttemptOne("IX"); // 5 milliseconds with a time complexity of O(n)
     }
 }
